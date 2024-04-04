@@ -1,7 +1,5 @@
 module RequestUserHelpers
 
-	def self.user_params_parameter
-	end
 
     def self.user_example
         {
@@ -34,10 +32,10 @@ module RequestUserHelpers
 
     def self.user_params_parameter(overrides = {})
         {
-            name: :client_params, in: :body, schema: {
+            name: :user_params, in: :body, schema: {
                 type: :object,
                 properties: {
-                    client: {
+                    user: {
                         type: :object,
                         properties: {
                             email: { type: :string, default: 'email@email.com' },

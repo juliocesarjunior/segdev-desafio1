@@ -1,12 +1,3 @@
-require 'rails_helper'
-
-RSpec.describe "Users", type: :request do
-  describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
-  end
-end
-
-
 require 'swagger_helper'
 require 'factory_bot_rails'
 
@@ -14,7 +5,6 @@ RSpec.describe 'Users', type: :request do
 
     path '/register' do
           post('create user') do
-          tags "products"
           consumes 'application/json'
           produces 'application/json'
 
@@ -26,7 +16,7 @@ RSpec.describe 'Users', type: :request do
               let(:schema) { user_schema }
 
               #EXEMPLO PARA APARECER
-              examples RequestUserHelpers.product_example
+              examples RequestUserHelpers.user_example
 
               run_test!
           end
@@ -45,10 +35,10 @@ RSpec.describe 'Users', type: :request do
             response(200, 'successful') do
                 
                 # FORMATO SCHEMA ESPERADO
-                let(:schema) { auth_schema }
+                let(:schema) { user_schema }
 
                 #EXEMPLO PARA APARECER
-                examples RequestAuthHelpers.auth_example
+                examples RequestUserHelpers.user_example
 
                 run_test!
             end
