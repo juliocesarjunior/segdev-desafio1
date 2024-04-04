@@ -10,6 +10,14 @@ module RequestUserHelpers
         }
     end
 
+    def self.user_register_example
+      {
+        'application/json' => {
+          message: "Usuário registrado com sucesso",
+        }
+      }
+    end
+
     def self.user_schema
         {
             type: :object,

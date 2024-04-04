@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+	#before_action :set_user, only: [:change_password]
+
 	def register
 		user = User.new(user_params)
 		if user.save
@@ -18,7 +20,19 @@ class UserController < ApplicationController
 		end
 	end
 
+  def change_password
+    if @current_user.update(password: params[:new_password])
+      render json: { message: 'Senha alterada com sucesso' }
+    else
+      render json: { error: 'Erro ao alterar a senha' }, status: :unprocessable_entity
+    end
+  end
+
 	private
+
+	def set_user
+		@user = User.find(params[:id])
+	end
 
 	def user_params
 		params.permit(:email, :password, :password_confirmation)

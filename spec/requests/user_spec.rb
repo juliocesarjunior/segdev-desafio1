@@ -5,6 +5,7 @@ RSpec.describe 'Users', type: :request do
 
     path '/register' do
           post('create user') do
+          tags 'Register User'
           consumes 'application/json'
           produces 'application/json'
 
@@ -16,7 +17,7 @@ RSpec.describe 'Users', type: :request do
               let(:schema) { user_schema }
 
               #EXEMPLO PARA APARECER
-              examples RequestUserHelpers.user_example
+              examples RequestUserHelpers.user_register_example
 
               run_test!
           end
@@ -25,7 +26,7 @@ RSpec.describe 'Users', type: :request do
 
     path '/login' do
         post('login') do
-            tags 'Authentication Client'
+            tags 'Authentication User'
             consumes 'application/json'
             produces 'application/json'
 

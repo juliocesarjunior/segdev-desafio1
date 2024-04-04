@@ -1,0 +1,82 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/register":
+    post:
+      summary: create user
+      tags:
+      - Register User
+      parameters: []
+      responses:
+        '201':
+          description: successful
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    message: Usuário registrado com sucesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      default: email@email.com
+                    password:
+                      type: string
+                      default: '1234567890'
+                    password_confirmation:
+                      type: string
+                      default: '1234567890'
+                  required:
+                  - email
+                  - status
+                  - password
+                  - password_confirmation
+  "/login":
+    post:
+      summary: login
+      tags:
+      - Authentication User
+      parameters:
+      - name: email
+        in: query
+        description: Email
+        value: test@admin.com
+        schema:
+          type: string
+      - name: password
+        in: query
+        description: Password
+        value: '1234567890'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                example_0:
+                  value:
+                    message: Login efetuado com sucesso!
+                    token: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImV4cGlyZXNfaW4iOjE3MTY3MzUwMjd9.2hkpiKetoXcMPN10g2w24GT8DbzHThAhlx07qy9LXug
+components:
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Your Bearer token
+servers:
+- url: http://localhost:3000
+  description: Local server
