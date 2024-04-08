@@ -46,7 +46,7 @@ POST `/login`
 Exemplo do corpo da solicitação:
 ```bash
 {
-  "email": "admin@admin.com",
+  "email": "email@email.com",
   "password": "1234567890"
 }
 ```
